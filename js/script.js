@@ -9,8 +9,10 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 // Creo una funzione che mi permetta di generare 5 numeri casuali diversi e di raggrupparli in un array
 // Prendo i 5 numeri casuali e li stampo su schermo
 // Genero un timer che parte da 30 a 0 secondi
-// Raggiunto il tempo 0 spariscono i numeri generati ed escono dei prompt che chiedono i 5 numeri, uno ad uno
+// Raggiunto lo 0, deve far sparire i 5 numeri generati random
+// Raggiunto lo 0, escono dei prompt che chiedono i 5 numeri, uno ad uno
 // Confronto i numeri dati dall'utente con quelli generati random, e assegno i punti
+// Mostro il punteggio all'utente
 
 const displayNumbers = document.getElementById("numbers");
 const displayTimer = document.getElementById("timer");
@@ -30,6 +32,7 @@ const randomNumbers = () => {
 };
 
 const numbers = randomNumbers();
+console.log(numbers);
 
 // Prendo i 5 numeri casuali e li stampo su schermo
 const numberSpans = document.querySelectorAll("#numbers span");
@@ -49,3 +52,21 @@ const timer = setInterval(() => {
         displayNumbers.style.display = "none";
     }
 }, 1000);
+
+// Raggiunto lo 0, escono dei prompt che chiedono i 5 numeri, uno ad uno
+
+setTimeout(() => {
+    let score = 0;
+    for (let i = 0; i < 5; i++) {
+        const userNumber = prompt(`Dimmi il ${i + 1}° numero`);
+        console.log(userNumber);
+
+        // Confronto i numeri dati dall'utente con quelli generati random, e assegno i punti1
+        if (numbers[i] === parseInt(userNumber)) {
+            score++;
+        }
+    }
+
+    // Mostro il punteggio all'utente
+    alert(`Hai totalizzato ${score} punti!`);
+}, 30100);
