@@ -57,16 +57,20 @@ const timer = setInterval(() => {
 
 setTimeout(() => {
     let score = 0;
+    let userNumbers = "";
     for (let i = 0; i < 5; i++) {
-        const userNumber = prompt(`Dimmi il ${i + 1}° numero`);
+        let userNumber = prompt(`Dimmi il ${i + 1}° numero`);
         console.log(userNumber);
 
         // Confronto i numeri dati dall'utente con quelli generati random, e assegno i punti1
         if (numbers[i] === parseInt(userNumber)) {
             score++;
+            userNumbers += userNumber + " ";
         }
     }
 
     // Mostro il punteggio all'utente
-    alert(`Hai totalizzato ${score} punti!`);
+    alert(
+        `Hai totalizzato ${score} punti indoivinando i seguenti numeri: ${userNumbers.trim()}!`
+    );
 }, 30100);
