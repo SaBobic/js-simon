@@ -17,22 +17,22 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 const displayNumbers = document.getElementById("numbers");
 const displayTimer = document.getElementById("timer");
 let timerStart = 30;
+const max = 100;
 
 // Creo una funzione che mi permetta di generare 5 numeri casuali e di raggrupparli in un array
 const randomNumbers = () => {
-    let array = [];
+    let array = [max];
     let number;
     for (let i = 0; i < 5; i++) {
         do {
-            number = Math.floor(Math.random() * 100 + 1);
+            number = Math.floor(Math.random() * max + 1);
         } while (array.includes(number));
         array.push(number);
     }
     return array;
 };
 
-const numbers = randomNumbers();
-console.log(numbers);
+const numbers = randomNumbers(max);
 
 // Prendo i 5 numeri casuali e li stampo su schermo
 const numberSpans = document.querySelectorAll("#numbers span");
@@ -72,8 +72,8 @@ setTimeout(() => {
     }
 
     // Mostro il punteggio all'utente
-    let message = "Non hai indovinato alcun numero";
+    let resultMessage = "Non hai indovinato alcun numero";
     if (score > 0)
-        message = `Hai totalizzato ${score} punti indovinando i seguenti numeri: ${userNumbers.trim()}`;
-    alert(message);
+        resultMessage = `Hai totalizzato ${score} punti indovinando i seguenti numeri: ${userNumbers.trim()}`;
+    alert(resultMessage);
 }, 30100);
