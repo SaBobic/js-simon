@@ -59,8 +59,10 @@ setTimeout(() => {
     let score = 0;
     let userNumbers = "";
     for (let i = 0; i < 5; i++) {
-        let userNumber = prompt(`Dimmi il ${i + 1}° numero`);
-        console.log(userNumber);
+        let userNumber;
+        do {
+            userNumber = prompt(`Dimmi il ${i + 1}° numero (da 1 a 100)`);
+        } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
 
         // Confronto i numeri dati dall'utente con quelli generati random, e assegno i punti1
         if (numbers[i] === parseInt(userNumber)) {
@@ -70,7 +72,8 @@ setTimeout(() => {
     }
 
     // Mostro il punteggio all'utente
-    alert(
-        `Hai totalizzato ${score} punti indoivinando i seguenti numeri: ${userNumbers.trim()}!`
-    );
+    let message = "Non hai indovinato alcun numero";
+    if (score > 0)
+        message = `Hai totalizzato ${score} punti indovinando i seguenti numeri: ${userNumbers.trim()}`;
+    alert(message);
 }, 30100);
